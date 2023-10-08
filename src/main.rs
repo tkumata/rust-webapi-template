@@ -11,19 +11,19 @@ async fn main() {
         .route(
             "/",
             get(|| async {
-                "Hello, Rust World! DocumentRoot."
+                "Hello, Rust World!"
             })
         )
         .route(
             "/foo",
             get(|| async {
-                "Hello, Rust GET World! /foo"
+                "Hello, Rust GET /foo World!"
             })
         )
         .route(
             "/post",
             post(|| async {
-                "Hello, Rust POST World. /post"
+                "Hello, Rust POST /post World."
             })
         );
 
