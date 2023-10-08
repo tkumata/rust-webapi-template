@@ -10,21 +10,15 @@ async fn main() {
     let app = Router::new()
         .route(
             "/",
-            get(|| async {
-                "Hello, Rust World!"
-            })
+            get(root)
         )
         .route(
             "/foo",
-            get(|| async {
-                "Hello, Rust GET /foo World!"
-            })
+            get(get_foo)
         )
         .route(
-            "/post",
-            post(|| async {
-                "Hello, Rust POST /post World."
-            })
+            "/bar",
+            post(post_bar)
         );
 
     // run it with hyper on localhost:3000
@@ -32,4 +26,16 @@ async fn main() {
         .serve(app.into_make_service())
         .await
         .unwrap();
+}
+
+async fn root() -> &'static str {
+    "Hello, Rust World!"
+}
+
+async fn get_foo() -> &'static str {
+    "Hello, Rust GET /foo World! and handler function."
+}
+
+async fn post_bar() -> &'static str {
+    "Hello, Rust POST /bar World! and handler function."
 }
