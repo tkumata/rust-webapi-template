@@ -11,14 +11,11 @@ mod controllers;
 
 #[tokio::main]
 async fn main() {
-    // build our application with a single route
-    // Todo: プラグイン的にとっかえひっかえができるようなカタチにする。
     let app = Router::new()
         .route("/", get(root))
         .route("/dice", get(controllers::dice::get_dice))
         .route("/bar", post(post_bar));
 
-    // run it with hyper on localhost:3000
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
         .serve(app.into_make_service())
         .await
