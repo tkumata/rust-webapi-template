@@ -1,25 +1,22 @@
 use axum::{
+    http::StatusCode,
+    response::IntoResponse,
+    response::Json,
     routing::{get, post},
     Router,
 };
+use serde_json::json;
+
+mod controllers;
 
 #[tokio::main]
 async fn main() {
     // build our application with a single route
     // Todo: プラグイン的にとっかえひっかえができるようなカタチにする。
     let app = Router::new()
-        .route(
-            "/",
-            get(root)
-        )
-        .route(
-            "/foo",
-            get(get_foo)
-        )
-        .route(
-            "/bar",
-            post(post_bar)
-        );
+        .route("/", get(root))
+        .route("/dice", get(controllers::dice::get_dice))
+        .route("/bar", post(post_bar));
 
     // run it with hyper on localhost:3000
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
@@ -28,12 +25,8 @@ async fn main() {
         .unwrap();
 }
 
-async fn root() -> &'static str {
-    "Hello, Rust World!"
-}
-
-async fn get_foo() -> &'static str {
-    "Hello, Rust GET /foo World! and handler function."
+async fn root() -> impl IntoResponse {
+    (StatusCode::OK, Json(json!("OK")))
 }
 
 async fn post_bar() -> &'static str {
