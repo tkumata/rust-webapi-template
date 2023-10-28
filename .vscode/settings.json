@@ -1,5 +1,5 @@
 {
-    "editor.fontFamily": "'SF Mono', monospace",
+    "editor.fontFamily": "'MesloLGS NF', monospace",
     "editor.renderWhitespace": "all",
     "editor.wordWrap": "off",
     "editor.wordWrapColumn": 100
