@@ -15,7 +15,7 @@ async fn main() {
         .route("/", get(root))
         .route("/dice", get(controllers::dice::get_dice))
         .route("/sleep", get(controllers::make_sleep::make_sleep))
-        .route("/bar", post(post_bar));
+        .route("/bar", post(controllers::post_bar::post_bar));
 
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
         .serve(app.into_make_service())
@@ -25,8 +25,4 @@ async fn main() {
 
 async fn root() -> impl IntoResponse {
     (StatusCode::OK, Json(json!("OK")))
-}
-
-async fn post_bar() -> &'static str {
-    "Hello, Rust POST /bar World! and handler function."
 }
