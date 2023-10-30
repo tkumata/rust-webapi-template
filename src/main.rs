@@ -9,11 +9,12 @@ use serde_json::json;
 
 mod controllers;
 
-#[tokio::main]
+#[tokio::main(flavor = "multi_thread", worker_threads = 16)]
 async fn main() {
     let app = Router::new()
         .route("/", get(root))
         .route("/dice", get(controllers::dice::get_dice))
+        .route("/sleep", get(controllers::make_sleep::make_sleep))
         .route("/bar", post(post_bar));
 
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
