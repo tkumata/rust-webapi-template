@@ -7,7 +7,7 @@ struct PostBar {
     bar: String
 }
 
-pub async fn post_bar() -> impl IntoResponse {
+pub async fn bar() -> impl IntoResponse {
     let message = "Hello, POST /bar Rust World with handler and controllers.".to_string();
     let bar = PostBar { bar : message };
 

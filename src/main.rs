@@ -13,9 +13,9 @@ mod controllers;
 async fn main() {
     let app = Router::new()
         .route("/", get(root))
-        .route("/dice", get(controllers::dice::get_dice))
+        .route("/dice", get(controllers::dice::dice))
         .route("/sleep", get(controllers::make_sleep::make_sleep))
-        .route("/bar", post(controllers::post_bar::post_bar));
+        .route("/bar", post(controllers::bar::bar));
 
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
         .serve(app.into_make_service())
