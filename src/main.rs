@@ -15,7 +15,7 @@ async fn main() {
         .route("/", get(controllers::root::root))
         .route("/dice", get(controllers::dice::dice))
         .route("/sleep/:wait_time", get(controllers::make_sleep::make_sleep))
-        // .route("/metrics", get(controllers::metrics::metrics))
+        .route("/metrics", get(controllers::metrics::metrics))
         .route("/bar", post(controllers::bar::bar));
 
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
