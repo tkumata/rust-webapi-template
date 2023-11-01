@@ -1,28 +1,25 @@
 use axum::{
-    http::StatusCode,
-    response::IntoResponse,
-    response::Json,
+    // http::StatusCode,
+    // response::IntoResponse,
+    // response::Json,
     routing::{get, post},
     Router,
 };
-use serde_json::json;
+// use serde_json::json;
 
 mod controllers;
 
 #[tokio::main(flavor = "multi_thread", worker_threads = 16)]
 async fn main() {
     let app = Router::new()
-        .route("/", get(root))
+        .route("/", get(controllers::root::root))
         .route("/dice", get(controllers::dice::dice))
-        .route("/sleep", get(controllers::make_sleep::make_sleep))
+        .route("/sleep/:wait_time", get(controllers::make_sleep::make_sleep))
+        // .route("/metrics", get(controllers::metrics::metrics))
         .route("/bar", post(controllers::bar::bar));
 
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
         .serve(app.into_make_service())
         .await
         .unwrap();
-}
-
-async fn root() -> impl IntoResponse {
-    (StatusCode::OK, Json(json!("OK")))
 }
