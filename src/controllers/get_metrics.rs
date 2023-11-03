@@ -6,7 +6,7 @@ use crate::models;
 
 #[derive(Serialize)]
 struct Metrics {
-    name: Option<String>,
+    os_name: Option<String>,
     cpu_load: String,
     memory_usage: u64,
 }
@@ -17,7 +17,7 @@ pub async fn get_metrics() -> impl IntoResponse {
     let mem_usage = models::metrics::get_mem();
 
     let metrics = Metrics {
-        name: os_name.await,
+        os_name: os_name.await,
         cpu_load: cpu_load.await,
         memory_usage: mem_usage.await,
     };
