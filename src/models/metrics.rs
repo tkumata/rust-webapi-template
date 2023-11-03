@@ -1,4 +1,4 @@
-use sysinfo::{System, SystemExt};
+use sysinfo::{System, SystemExt, DiskExt};
 
 pub async fn get_kernelname() -> Option<String> {
     let sys = System::new();
@@ -24,4 +24,15 @@ pub async fn get_mem() -> u64 {
     let m = sys.used_memory() as u64;
 
     m
+}
+
+pub async fn get_storage() -> String {
+    let sys = System::new_all();
+    let mut free_spaces: Vec<String> = Vec::new();
+
+    for disk in sys.disks() {
+        free_spaces.push(disk.available_space().to_string());
+    }
+
+    free_spaces.join(",")
 }
