@@ -1,5 +1,12 @@
 use sysinfo::{System, SystemExt};
 
+pub async fn get_osname() -> Option<String> {
+    let sys = System::new();
+    let name = sys.name();
+
+    name
+}
+
 pub async fn get_load() -> String {
     let sys = System::new_all();
     let load_avg = sys.load_average();
