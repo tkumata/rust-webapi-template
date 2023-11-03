@@ -1,6 +1,6 @@
 use sysinfo::{System, SystemExt};
 
-pub async fn get_osname() -> Option<String> {
+pub async fn get_kernelname() -> Option<String> {
     let sys = System::new();
     let name = sys.name();
 
