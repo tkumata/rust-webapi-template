@@ -9,7 +9,7 @@ struct Metrics {
     kernel_name: Option<String>,
     cpu_load: String,
     memory_usage: u64,
-    disk_info: String,
+    disk_info: Vec<String>,
 }
 
 pub async fn get_metrics() -> impl IntoResponse {

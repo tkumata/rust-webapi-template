@@ -1,7 +1,7 @@
-use axum::Json;
+// use axum::Json;
 use sysinfo::{System, SystemExt, DiskExt};
 use serde::Serialize;
-use serde_json::json;
+// use serde_json::json;
 
 pub async fn get_kernelname() -> Option<String> {
     let sys = System::new();
@@ -27,23 +27,39 @@ pub async fn get_mem() -> u64 {
 }
 
 #[derive(Serialize)]
-struct ApiDiskInfo {
+struct DiskInfo {
     mount_point: String,
+    spaces: Spaces,
+}
+#[derive(Serialize)]
+struct Spaces {
     available_space: u64,
     total_space: u64,
 }
 
-pub async fn get_storage() -> String {
+pub async fn get_storage() -> Vec<String> {
     let sys = System::new_all();
     let mut disk_info = Vec::new();
 
     for disk in sys.disks() {
-        disk_info.push(ApiDiskInfo {
+        let diskinfo = DiskInfo {
             mount_point: disk.mount_point().to_path_buf().to_string_lossy().into_owned(),
-            available_space: disk.available_space(),
-            total_space: disk.total_space(),
-        });
+            spaces: Spaces {
+                available_space: disk.available_space(),
+                total_space: disk.total_space(),
+            }
+        };
+        let serialized = serde_json::to_string(&diskinfo).unwrap();
+        disk_info.push(serialized);
     }
 
-    Json(json!(disk_info)).to_string()
+    // case return Json string
+    // Json(json!(disk_info)).to_string()
+
+    // case return string
+    // let string = disk_info.join(",");
+    // string
+
+    // case return Vec<String>
+    disk_info
 }
