@@ -13,7 +13,7 @@ struct SleepDuration {
     sleep_duration: i32
 }
 
-pub async fn make_sleep(Path(path): Path<WaitDurationPath>) -> impl IntoResponse {
+pub async fn put_to_sleep(Path(path): Path<WaitDurationPath>) -> impl IntoResponse {
     let d = path.wait_time as u64;
     sleep(Duration::from_secs(d)).await;
 

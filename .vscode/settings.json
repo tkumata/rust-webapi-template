@@ -1,9 +1,9 @@
 {
-    "editor.fontFamily": "'MesloLGS NF', monospace",
+    "editor.fontFamily": "monospace",
     "editor.renderWhitespace": "all",
-    "editor.wordWrap": "off",
     "editor.wordWrapColumn": 100,
     "rust-analyzer.linkedProjects": [
         "./Cargo.toml"
-    ]
+    ],
+    "editor.scrollBeyondLastLine": false
 }
