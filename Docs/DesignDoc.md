@@ -45,26 +45,33 @@ or
 
 app 要求
 
-- DB に接続せず単に固定文字列を返す API
-- DB に接続せず単に固定 JSON を返す API
-- DB に接続して JSON を返す API
+- 1d6 する API
+- CPU Load, Storage Info を返す API
+- Threading の確認のため任意の時間 sleep する API
 
 環境要求
 
 - .vscode は意図的に git 管理する。
 - .devcontainer も開発環境共通化のために git 管理する。
 
-## 仕様
+## API 仕様
+
+| HTTP Method | URI               | Return Type | Notes               |
+|-------------|-------------------|-------------|---------------------|
+| GET         | /api/dice         | json        | Return 1d6.         |
+| GET         | /api/sleep/{:int} | json        | Sleep.              |
+| GET         | /api/metrics      | json        | Get server metrics. |
 
 ## Goal
 
 - Axum の使い方に慣れること。
 - 簡素な Web API ができてること。
+- せめてレイヤードアーキテクチャで。
 
 ## Non-Goal
 
 - REST API はまだ。
-- クリーンアーキテクチャはまだ
+- クリーンアーキテクチャはまだ。
 
 ## Rust の開発環境の準備
 
@@ -99,7 +106,7 @@ VSCode Dev Container で環境構築。以下を `.devcontainer/devcontainer.jso
 +-------------+                 +----------------------------+
 ```
 
-### 依存クレート
+### 使用するクレート
 
 - axum
 - tokio
