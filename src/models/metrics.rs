@@ -1,7 +1,5 @@
-// use axum::Json;
 use sysinfo::{System, SystemExt, DiskExt};
 use serde::Serialize;
-// use serde_json::json;
 
 pub async fn get_kernelname() -> Option<String> {
     let sys = System::new();
@@ -52,13 +50,6 @@ pub async fn get_storage() -> Vec<String> {
         let serialized = serde_json::to_string(&diskinfo).unwrap();
         disk_info.push(serialized);
     }
-
-    // case return Json string
-    // Json(json!(disk_info)).to_string()
-
-    // case return string
-    // let string = disk_info.join(",");
-    // string
 
     // case return Vec<String>
     disk_info
