@@ -9,7 +9,7 @@ use serde::Deserialize;
 pub struct RequestRgb {
     r: i32,
     g: i32,
-    b: i32,
+    b: i32
 }
 
 struct ConvertedRgb {
