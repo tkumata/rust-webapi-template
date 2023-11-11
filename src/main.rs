@@ -26,8 +26,8 @@ async fn main() {
             get(controllers::metrics::get_metrics)
         )
         .route(
-            "/make/rgb",
-            post(controllers::make_rgb::make_rgb)
+            "/convert/rgb",
+            post(controllers::convert::rgb)
         );
 
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
