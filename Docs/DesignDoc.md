@@ -61,7 +61,7 @@ app 要求
 | GET    | /dice         | json   | Return 1d6.                 |
 | GET    | /sleep/{:int} | json   | Sleep.                      |
 | GET    | /metrics      | json   | Get server metrics.         |
-| POST   | /             | json   | Recieve data then use data. |
+| POST   | /make/rgb     | json   | Recieve data then use data. |
 
 ## Goal
 
