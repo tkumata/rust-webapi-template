@@ -27,8 +27,8 @@ async fn main() {
             get(controllers::metrics::get_metrics)
         )
         .route(
-            "/convert/netmasks",
-            post(controllers::convert::netmasks)
+            "/convert/net_prefix",
+            post(controllers::convert::net_prefix)
         )
         .route(
             "/convert/rgb",
