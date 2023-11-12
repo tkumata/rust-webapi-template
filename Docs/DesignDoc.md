@@ -56,12 +56,13 @@ app 要求
 
 ## API 仕様
 
-| Method | URI           | Return | Notes               |
-|--------|---------------|--------|---------------------|
-| GET    | /dice         | json   | Return 1d6.         |
-| GET    | /sleep/{:int} | json   | Sleep.              |
-| GET    | /metrics      | json   | Get server metrics. |
-| POST   | /convert/rgb  | string | Convert RGB to HEX. |
+| Method | URI               | Return | Notes                  |
+|--------|-------------------|--------|------------------------|
+| GET    | /dice             | json   | Return 1d6.            |
+| GET    | /sleep/{:int}     | json   | Sleep.                 |
+| GET    | /metrics          | json   | Get server metrics.    |
+| POST   | /convert/rgb      | string | Convert RGB to HEX.    |
+| POST   | /convert/netmasks | string | Convert bit to netmask |
 
 ## Goal
 
