@@ -3,6 +3,7 @@
     "editor.renderWhitespace": "all",
     "editor.wordWrapColumn": 100,
     "rust-analyzer.linkedProjects": [
+        "./Cargo.toml",
         "./Cargo.toml"
     ],
     "editor.scrollBeyondLastLine": false
