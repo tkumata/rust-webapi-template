@@ -51,3 +51,13 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 Homebrew で Rust をインストールすると依存関係でその他のソフトウェアもインストールされます。うちでは llvm と zx が入り、これらが他のソフトウェアの依存先にもなってしまい綺麗にするのに手間がかかりました。そういった意味でも初手公式が望ましいです。
+
+## 進捗
+
+こんな感じで RGB の 10 進数を JSON で渡すと String 型で # + 16 進数を返します。
+
+![Convert RGB](./Docs/images/Screenshot-convert-rgb.png)
+
+bit 長を JSON で渡すと、String 型で netmaks アドレスを返します。
+
+![Convert Netmasks](./Docs/images/Screenshot-convert-netmasks.png)
