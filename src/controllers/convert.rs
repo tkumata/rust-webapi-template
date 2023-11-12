@@ -19,3 +19,14 @@ pub async fn rgb(Json(req_rgb): Json<RequestRgb>) -> impl IntoResponse {
     let rgb = format!("#{}{}{}", converted.r, converted.g, converted.b);
     (StatusCode::OK, rgb)
 }
+
+#[derive(Deserialize)]
+pub struct RequestNetmasks {
+    bit: i32
+}
+
+pub async fn netmasks(Json(req_netmasks): Json<RequestNetmasks>) -> impl IntoResponse {
+    let converted = utils::utils::convert_netmasks(req_netmasks.bit);
+    let addr = converted.to_string();
+    (StatusCode::OK, addr)
+}

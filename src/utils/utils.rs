@@ -1,3 +1,5 @@
+use std::net::IpAddr;
+
 pub struct ConvertedRgb {
     pub r: String,
     pub g: String,
@@ -22,4 +24,10 @@ pub fn convert_rgb(r: i32, g: i32, b: i32) -> ConvertedRgb {
         b: to_hex(b).to_string()
     };
     rgb
+}
+
+pub fn convert_netmasks(bit: i32) -> IpAddr {
+    let bits: u32 = (!0) << (32 - bit);
+    let net_mask = IpAddr::V4(bits.into());
+    net_mask
 }
