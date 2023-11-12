@@ -14,19 +14,30 @@ pub struct RequestRgb {
     b: i32
 }
 
-pub async fn rgb(Json(req_rgb): Json<RequestRgb>) -> impl IntoResponse {
-    let converted = utils::utils::convert_rgb(req_rgb.r, req_rgb.g, req_rgb.b);
-    let rgb = format!("#{}{}{}", converted.r, converted.g, converted.b);
+pub async fn rgb(
+    Json(req_rgb): Json<RequestRgb>
+) -> impl IntoResponse {
+    let converted: utils::utils::ConvertedRgb = utils::utils::to_rgb_hex(
+        req_rgb.r,
+        req_rgb.g,
+        req_rgb.b
+    );
+
+    let rgb: String = format!("#{}{}{}", converted.r, converted.g, converted.b);
+
     (StatusCode::OK, rgb)
 }
 
 #[derive(Deserialize)]
-pub struct RequestNetmasks {
-    bit: i32
+pub struct RequestNetPrefix {
+    bit_length: i32
 }
 
-pub async fn netmasks(Json(req_netmasks): Json<RequestNetmasks>) -> impl IntoResponse {
-    let converted = utils::utils::convert_netmasks(req_netmasks.bit);
-    let addr = converted.to_string();
-    (StatusCode::OK, addr)
+pub async fn net_prefix(
+    Json(req_prefix): Json<RequestNetPrefix>
+) -> impl IntoResponse {
+    let converted: std::net::IpAddr = utils::utils::to_subnetmask(req_prefix.bit_length);
+    let subnetmask: String = converted.to_string();
+
+    (StatusCode::OK, subnetmask)
 }
