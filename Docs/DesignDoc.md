@@ -56,11 +56,13 @@ app 要求
 
 ## API 仕様
 
-| HTTP Method | URI               | Return Type | Notes               |
-|-------------|-------------------|-------------|---------------------|
-| GET         | /api/dice         | json        | Return 1d6.         |
-| GET         | /api/sleep/{:int} | json        | Sleep.              |
-| GET         | /api/metrics      | json        | Get server metrics. |
+| Method | URI               | Return | Notes                  |
+|--------|-------------------|--------|------------------------|
+| GET    | /dice             | json   | Return 1d6.            |
+| GET    | /sleep/{:int}     | json   | Sleep.                 |
+| GET    | /metrics          | json   | Get server metrics.    |
+| POST   | /convert/rgb      | string | Convert RGB to HEX.    |
+| POST   | /convert/netmasks | string | Convert bit to netmask |
 
 ## Goal
 
@@ -96,11 +98,11 @@ VSCode Dev Container で環境構築。以下を `.devcontainer/devcontainer.jso
 +-------------+                 +----------------------------+
 | Local PC    |                 |  Container                 |
 | +--------+  |                 |  +--------+ --> FileSystem |
-| | VSCode | --- Exported port --> | VSCode | --> Dev tools  |
+| | VSCode |---- Exported port --->| VSCode | --> Dev tools  |
 | +--------+  |                 |  | Server | --> app        |
 |             |                 |  +--------+ --> Debug      |
 | +--------+  |                 |  +--------+                |
-| | Source | <-- Volume mount  --> | Source |                |
+| | Source |<--- Volume mount ---->| Source |                |
 | | code   |  |                 |  | code   |                |
 | +--------+  |                 |  +--------+                |
 +-------------+                 +----------------------------+
