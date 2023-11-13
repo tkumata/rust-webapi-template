@@ -22,7 +22,7 @@ pub async fn get_metrics() -> impl IntoResponse {
     let mem_usage = models::metrics::get_mem();
     let disk_info = models::metrics::get_storage();
 
-    let metrics = Metrics {
+    let metrics: Metrics = Metrics {
         kernel_name: kernel_name.await,
         cpu_load: cpu_load.await,
         memory_usage: mem_usage.await,

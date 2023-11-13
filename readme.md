@@ -54,14 +54,13 @@ Homebrew で Rust をインストールすると依存関係でその他のソ�
 
 ## 進捗
 
-
-| Method | URI                 | Return | Return ex                 |
-|--------|---------------------|--------|---------------------------|
-| GET    | /dice               | json   | `{ "dice": 2 }`           |
-| GET    | /sleep/{:int}       | json   | `{ "sleep_duration": 3 }` |
-| GET    | /metrics            | json   | `{ "cpu_load": "2,1,2", "storage": "xxxxxxxxxxx" }` |
-| POST   | /convert/rgb        | string | `#12d3e4`                 |
-| POST   | /convert/net_prefix | string | `255.245.0.0`             |
+| Method | URI               | Return | Return ex                 |
+|--------|-------------------|--------|---------------------------|
+| GET    | /dice             | json   | `{ "dice": 2 }`           |
+| GET    | /sleep/{:int}     | json   | `{ "sleep_duration": 3 }` |
+| GET    | /metrics          | json   | `{ "cpu_load": "2,1,2", "storage": "xxxxxxxxxxx" }` |
+| POST   | /convert/rgb      | string | `#12d3e4`                 |
+| POST   | /convert/v4prefix | string | `255.245.0.0`             |
 
 ![Convert RGB](./Docs/images/Screenshot-convert-rgb.png)
 
