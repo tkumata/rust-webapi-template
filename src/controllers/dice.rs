@@ -11,7 +11,7 @@ struct Dice {
 pub async fn roll() -> impl IntoResponse {
     let mut rnd: rand::rngs::ThreadRng = rand::thread_rng();
     let i: i32 = rnd.gen_range(1..6);
-    let dice = Dice { dice: i };
+    let dice: Dice = Dice { dice: i };
 
     (StatusCode::OK, Json(json!(dice)))
 }

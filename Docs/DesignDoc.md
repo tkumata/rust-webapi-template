@@ -61,8 +61,8 @@ app 要求
 | GET    | /dice             | json   | Return 1d6.            |
 | GET    | /sleep/{:int}     | json   | Sleep.                 |
 | GET    | /metrics          | json   | Get server metrics.    |
-| POST   | /convert/rgb      | string | Convert RGB to HEX.    |
-| POST   | /convert/netmasks | string | Convert bit to netmask |
+| POST   | /convert/rgb      | string | Convert to RGB HEX.    |
+| POST   | /convert/v4prefix | string | Convert to subnetmask. |
 
 ## Goal
 

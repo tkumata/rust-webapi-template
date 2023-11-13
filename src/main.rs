@@ -9,7 +9,7 @@ mod utils;
 
 #[tokio::main(flavor = "multi_thread", worker_threads = 16)]
 async fn main() {
-    let app = Router::new()
+    let app: Router = Router::new()
         .route(
             "/",
             get(controllers::root::root)
@@ -27,8 +27,8 @@ async fn main() {
             get(controllers::metrics::get_metrics)
         )
         .route(
-            "/convert/net_prefix",
-            post(controllers::convert::net_prefix)
+            "/convert/v4prefix",
+            post(controllers::convert::v4_prefix)
         )
         .route(
             "/convert/rgb",
