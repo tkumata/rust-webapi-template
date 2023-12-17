@@ -1,4 +1,8 @@
-use sysinfo::{System, SystemExt, DiskExt};
+use sysinfo::{
+    System,
+    SystemExt,
+    DiskExt
+};
 use serde::Serialize;
 
 pub async fn get_kernelname() -> Option<String> {
@@ -21,7 +25,7 @@ pub async fn get_load() -> String {
 pub async fn get_mem() -> u64 {
     let sys = System::new_all();
 
-    sys.used_memory() as u64
+    sys.used_memory()
 }
 
 #[derive(Serialize)]

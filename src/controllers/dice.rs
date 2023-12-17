@@ -1,4 +1,8 @@
-use axum::{http::StatusCode, response::IntoResponse, response::Json};
+use axum::{
+    http::StatusCode,
+    response::IntoResponse,
+    response::Json
+};
 use rand::Rng;
 use serde::Serialize;
 use serde_json::json;

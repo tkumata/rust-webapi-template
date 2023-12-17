@@ -1,10 +1,17 @@
 {
-    "editor.fontFamily": "monospace",
-    "editor.renderWhitespace": "all",
-    "editor.wordWrapColumn": 100,
-    "rust-analyzer.linkedProjects": [
-        "./Cargo.toml",
-        "./Cargo.toml"
-    ],
-    "editor.scrollBeyondLastLine": false
+  "editor.fontSize": 14,
+  "editor.fontFamily": "monospace",
+  "editor.fontLigatures": false,
+  "editor.scrollBeyondLastLine": false,
+  "editor.lineHeight": 1.6,
+  "editor.renderWhitespace": "all",
+  "editor.wordWrapColumn": 100,
+  "editor.rulers": [100],
+  "editor.wordWrap": "on",
+  "editor.cursorBlinking": "blink",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "markdown.preview.fontFamily": "sans-serif, monospace",
+  "rust-analyzer.linkedProjects": ["./Cargo.toml", "./Cargo.toml"],
+  "rust-analyzer.check.command": "clippy"
 }
