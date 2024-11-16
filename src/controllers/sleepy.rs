@@ -1,4 +1,9 @@
-use axum::{http::StatusCode, response::IntoResponse, response::Json, extract::Path};
+use axum::{
+    http::StatusCode,
+    response::IntoResponse,
+    response::Json,
+    extract::Path
+};
 use serde::{Serialize, Deserialize};
 use serde_json::json;
 use tokio::time::{sleep, Duration};

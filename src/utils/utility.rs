@@ -7,13 +7,7 @@ pub struct ConvertedRgb {
 }
 
 pub fn to_hex(value: i32) -> String {
-    let value: i32 = if value > 255 {
-        255
-    } else if value < 0 {
-        0
-    } else {
-        value
-    };
+    let value: i32 = value.clamp(0, 255);
 
     format!("{:02X}", value)
 }

@@ -10,14 +10,14 @@ VS Code Dev Container を入れ以下のファイルを .devcontainer/devcontain
 
 ```json
 {
-    "name": "Ubuntu",
-    "image": "mcr.microsoft.com/devcontainers/base:jammy",
-    "features": {
-        "ghcr.io/devcontainers/features/rust:1": {
-            "version": "latest",
-            "profile": "default"
-        }
+  "name": "Ubuntu",
+  "image": "mcr.microsoft.com/devcontainers/base:jammy",
+  "features": {
+    "ghcr.io/devcontainers/features/rust:1": {
+      "version": "latest",
+      "profile": "default"
     }
+  }
 }
 ```
 
@@ -40,27 +40,27 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 そして、Rust のバージョンアップは以下でできます。
 
 ```shell
-% rustup update
+rustup update
 ```
 
 プロジェクト内のクレートなどのバージョンアップは以下でできます。
 
 ```shell
-% cd "your project"
-% cargo update
+cd "your project"
+cargo update
 ```
 
 Homebrew で Rust をインストールすると依存関係でその他のソフトウェアもインストールされます。うちでは llvm と zx が入り、これらが他のソフトウェアの依存先にもなってしまい綺麗にするのに手間がかかりました。そういった意味でも初手公式が望ましいです。
 
 ## 進捗
 
-| Method | URI               | Return | Return ex                 |
-|--------|-------------------|--------|---------------------------|
-| GET    | /dice             | json   | `{ "dice": 2 }`           |
-| GET    | /sleep/{:int}     | json   | `{ "sleep_duration": 3 }` |
+| Method | URI               | Return | Return ex                                           |
+| ------ | ----------------- | ------ | --------------------------------------------------- |
+| GET    | /dice             | json   | `{ "dice": 2 }`                                     |
+| GET    | /sleep/{:int}     | json   | `{ "sleep_duration": 3 }`                           |
 | GET    | /metrics          | json   | `{ "cpu_load": "2,1,2", "storage": "xxxxxxxxxxx" }` |
-| POST   | /convert/rgb      | string | `#12d3e4`                 |
-| POST   | /convert/v4prefix | string | `255.245.0.0`             |
+| POST   | /convert/rgb      | string | `#12d3e4`                                           |
+| POST   | /convert/v4prefix | string | `255.245.0.0`                                       |
 
 ![Convert RGB](./Docs/images/Screenshot-convert-rgb.png)
 
