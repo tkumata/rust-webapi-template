@@ -1,28 +1,46 @@
+use bcrypt::{hash, DEFAULT_COST};
 use crate::domain::user::{CreateUser, UpdateUser, User};
 use sqlx::{Pool, Postgres};
 use uuid::Uuid;
 
 pub async fn get_all_users(pool: &Pool<Postgres>) -> Result<Vec<User>, sqlx::Error> {
-    sqlx::query_as!(User, "SELECT id, name, email FROM users")
+    sqlx::query_as!(User, "SELECT id, name, email, password_hash FROM users")
         .fetch_all(pool)
         .await
 }
 
 pub async fn get_user_by_id(pool: &Pool<Postgres>, id: Uuid) -> Result<Option<User>, sqlx::Error> {
-    sqlx::query_as!(User, "SELECT id, name, email FROM users WHERE id = $1", id)
+    sqlx::query_as!(User, "SELECT id, name, email, password_hash FROM users WHERE id = $1", id)
         .fetch_optional(pool)
         .await
 }
 
-pub async fn create_user(pool: &Pool<Postgres>, input: CreateUser) -> Result<User, sqlx::Error> {
-    sqlx::query_as!(
+pub async fn create_user(
+    pool: &Pool<Postgres>,
+    input: CreateUser
+) -> Result<User, sqlx::Error> {
+    // パスワードをハッシュ化
+    let password_hash = hash(input.password, DEFAULT_COST)
+        .map_err(|_| sqlx::Error::RowNotFound)?; // bcrypt エラーを適切に処理
+
+    let user_id = Uuid::new_v4();
+
+    let user = sqlx::query_as!(
         User,
-        "INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id, name, email",
+        r#"
+        INSERT INTO users (id, name, email, password_hash)
+        VALUES ($1, $2, $3, $4)
+        RETURNING id, name, email, password_hash
+        "#,
+        user_id,
         input.name,
-        input.email
+        input.email,
+        password_hash
     )
     .fetch_one(pool)
-    .await
+    .await?;
+
+    Ok(user)
 }
 
 pub async fn update_user(
@@ -32,7 +50,10 @@ pub async fn update_user(
 ) -> Result<Option<User>, sqlx::Error> {
     sqlx::query_as!(
         User,
-        "UPDATE users SET name = COALESCE($1, name), email = COALESCE($2, email) WHERE id = $3 RETURNING id, name, email",
+        r#"
+        UPDATE users SET name = COALESCE($1, name), email = COALESCE($2, email)
+        WHERE id = $3
+        RETURNING id, name, email, password_hash"#,
         input.name,
         input.email,
         id
