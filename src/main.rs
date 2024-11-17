@@ -24,6 +24,7 @@ async fn main() {
         .route("/metrics", get(controllers::metrics::get_metrics))
         .route("/convert/v4prefix", post(controllers::convert::v4_prefix))
         .route("/convert/rgb", post(controllers::convert::rgb))
+        // CRUD のためのルーティング
         .route("/login", post(auth_handler::login))
         .route("/users", get(user_handler::list_users))
         .route("/users", post(user_handler::create_user))
@@ -32,8 +33,7 @@ async fn main() {
         .route("/users/:id", delete(user_handler::delete_user))
         .with_state(pool);
 
-        axum::Server::bind(&"0.0.0.0:4000".parse().unwrap())
-            .serve(app.into_make_service())
-            .await
-            .unwrap();
+        // run our app with hyper, listening globally on port 4000
+        let listener = tokio::net::TcpListener::bind("0.0.0.0:4000").await.unwrap();
+        axum::serve(listener, app).await.unwrap();
 }

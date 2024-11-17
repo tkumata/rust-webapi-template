@@ -7,6 +7,7 @@ use crate::{
 use sqlx::PgPool;
 use uuid::Uuid;
 
+// 全ユーザ情報取得ハンドラ
 pub async fn list_users(
     State(pool): State<PgPool>,
     AuthenticatedUser(_claims): AuthenticatedUser, // 認証を要求
@@ -15,11 +16,16 @@ pub async fn list_users(
     Json(users)
 }
 
-pub async fn get_user(State(pool): State<PgPool>, Path(id): Path<Uuid>) -> Json<Option<crate::domain::user::User>> {
+// 個別ユーザ情報取得ハンドラ
+pub async fn get_user(
+    State(pool): State<PgPool>,
+    Path(id): Path<Uuid>
+) -> Json<Option<crate::domain::user::User>> {
     let user = user_service::get_user_by_id(&pool, id).await.unwrap();
     Json(user)
 }
 
+// ユーザ作成ハンドラ
 pub async fn create_user(
     State(pool): State<PgPool>,
     Json(payload): Json<CreateUser>,
@@ -28,6 +34,7 @@ pub async fn create_user(
     Json(user)
 }
 
+// ユーザ情報更新ハンドラ
 pub async fn update_user(
     State(pool): State<PgPool>,
     Path(id): Path<Uuid>,
@@ -37,7 +44,11 @@ pub async fn update_user(
     Json(user)
 }
 
-pub async fn delete_user(State(pool): State<PgPool>, Path(id): Path<Uuid>) -> Json<u64> {
+// ユーザ情報削除ハンドラ
+pub async fn delete_user(
+    State(pool): State<PgPool>,
+    Path(id): Path<Uuid>
+) -> Json<u64> {
     let rows_affected = user_service::delete_user(&pool, id).await.unwrap();
     Json(rows_affected)
 }
