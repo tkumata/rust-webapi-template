@@ -1,19 +1,12 @@
-use sysinfo::{
-    System,
-    SystemExt,
-    DiskExt
-};
+use sysinfo::{System, Disks};
 use serde::Serialize;
 
 pub async fn get_kernelname() -> Option<String> {
-    let sys: System = System::new();
-
-    sys.name()
+    System::name()
 }
 
 pub async fn get_load() -> String {
-    let sys: System = System::new_all();
-    let load_avg: sysinfo::LoadAvg = sys.load_average();
+    let load_avg: sysinfo::LoadAvg = System::load_average();
 
     [
         load_avg.one.to_string(),
@@ -40,10 +33,10 @@ struct Spaces {
 }
 
 pub async fn get_storage() -> Vec<String> {
-    let sys: System = System::new_all();
     let mut disk_info: Vec<String> = Vec::new();
+    let disks = Disks::new_with_refreshed_list();
 
-    for disk in sys.disks() {
+    for disk in disks.list() {
         let diskinfo: DiskInfo = DiskInfo {
             mount_point: disk.mount_point().to_path_buf().to_string_lossy().into_owned(),
             spaces: Spaces {

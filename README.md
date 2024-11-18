@@ -1,10 +1,10 @@
 # Rust で Web API をつくる
 
-目標は、Rust で REST API を作ります。
+本プロジェクトの目標は、Rust で REST API の雛形を作ることです。私の知識の可能な限りクリーンアーキテクチャを意識しています。
 
 ## 開発環境
 
-マシンごとに Rust 環境を構築しなくても良くなるので、VS Code Dev Container でローカルマシン内に OCI コンテナを立て Rust 開発ツールを導入します。
+VSCode Dev Container でローカルマシン内に OCI コンテナを立て Rust 開発ツールを導入します。
 
 .devcontainer ディレクトリ内に以下のファイルを作成します。
 
@@ -12,7 +12,7 @@
 - docker-compose.yml
 - Dockerfile
 
-初回は時間がかかりますが二回目以降は Attach するだけなので時短できます。
+初回は時間がかかりますが二回目以降は Attach するだけなので時間はかかりません。
 
 devcontainer.json
 
