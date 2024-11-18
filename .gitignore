@@ -1,4 +1,5 @@
 .DS_Store
 .gitconfig
+.env
 /target
 Cargo.lock

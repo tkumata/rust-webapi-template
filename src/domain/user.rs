@@ -14,7 +14,6 @@ pub struct User {
 pub struct CreateUser {
     pub name: String,
     pub email: String,
-    #[serde(skip_serializing)] // パスワードハッシュは JSON に含めない
     pub password: String,
 }
 
