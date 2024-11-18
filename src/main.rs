@@ -29,7 +29,7 @@ async fn main() {
         .route("/convert/v4prefix", post(convert_handler::convert_v4prefix))
         // Convert 55,155,250 to 379BFA
         .route("/convert/rgb", post(convert_handler::convert_rgb))
-        // Auth and make one time token.
+        // Auth and make one hour token.
         .route("/login", post(auth_handler::login))
         // Get all users.
         .route("/users", get(user_handler::list_users))
