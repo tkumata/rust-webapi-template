@@ -65,6 +65,38 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
    && apt-get autoremove -y && apt-get clean -y
 ```
 
+## Usage
+
+### Create user
+
+```shell
+curl --location 'http://localhost:4000/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Your Name",
+    "email": "yourmail@example.com",
+    "password":"password"
+}'
+```
+
+### Login
+
+```shell
+curl --location 'http://localhost:4000/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "yourmail@example.com",
+    "password":"password"
+}'
+```
+
+### Get user
+
+```shell
+curl --location 'http://localhost:4000/users/3e2d142d-58fe-4b9a-b6db-019f824b4d59' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzZTJkMTQyZC01OGZlLTRiOWEtYjZkYi0wMTlmODI0YjRkNTkiLCJleHAiOjE3MzIwMjE5NTl9.l27mHiTGb0Ghx0s1vlQuccb99llcdo-MCSuNMSgRPds'
+```
+
 ## Mac 利用時の注意点
 
 Homebrew で Rust をインストールすると、フォーミュラが更新されない限りインストール時点のバージョンになります。そして Rust は頻繁に更新します。すると rustup と rustc のバージョンが合わない期間が出てきます。この結果、rust-analyzer の挙動がおかしくなることがあります。うちでは proc macros のエラーでコード内の macro が見つからなくなりました。
