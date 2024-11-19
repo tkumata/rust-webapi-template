@@ -19,13 +19,15 @@ pub async fn list_users(
 // 個別ユーザ情報取得ハンドラ
 pub async fn get_user(
     State(pool): State<PgPool>,
-    Path(id): Path<Uuid>
+    Path(id): Path<Uuid>,
+    AuthenticatedUser(_claims): AuthenticatedUser, // 認証を要求
 ) -> Json<Option<crate::domain::user::User>> {
     let user = user_service::get_user_by_id(&pool, id).await.unwrap();
     Json(user)
 }
 
 // ユーザ作成ハンドラ
+// ユーザ作成は認証なし
 pub async fn create_user(
     State(pool): State<PgPool>,
     Json(payload): Json<CreateUser>,
@@ -38,6 +40,7 @@ pub async fn create_user(
 pub async fn update_user(
     State(pool): State<PgPool>,
     Path(id): Path<Uuid>,
+    AuthenticatedUser(_claims): AuthenticatedUser, // 認証を要求
     Json(payload): Json<UpdateUser>,
 ) -> Json<Option<crate::domain::user::User>> {
     let user = user_service::update_user(&pool, id, payload).await.unwrap();
@@ -47,7 +50,8 @@ pub async fn update_user(
 // ユーザ情報削除ハンドラ
 pub async fn delete_user(
     State(pool): State<PgPool>,
-    Path(id): Path<Uuid>
+    Path(id): Path<Uuid>,
+    AuthenticatedUser(_claims): AuthenticatedUser, // 認証を要求
 ) -> Json<u64> {
     let rows_affected = user_service::delete_user(&pool, id).await.unwrap();
     Json(rows_affected)
