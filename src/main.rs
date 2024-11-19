@@ -20,8 +20,11 @@ async fn main() {
     let pool = create_db_pool().await.expect("Failed to create DB pool");
 
     let app = Router::new()
+        // healthcheck
         .route("/healthcheck", get(healthcheck_handler::healthcheck))
+        // Return random number
         .route("/roll/1d6", get(dice_handler::roll_1d6))
+        // Sleep
         .route("/sleep/:wait_time", get(sleep_handler::make_sleep))
         // Get metrics.
         .route("/metrics", get(metrics_handler::get_metrics))
