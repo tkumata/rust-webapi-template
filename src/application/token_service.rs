@@ -20,9 +20,9 @@ pub async fn create_and_store_token(
     let jwt_secret: String = env::var("JWT_SECRET").expect("JWT_SECRET must be set");
     let secret_key: &[u8] = jwt_secret.as_bytes();
 
-    // トークンの有効期限を設定 (例: 1時間)
+    // トークンの有効期限を設定
     let expiration = Utc::now()
-        .checked_add_signed(Duration::hours(1))
+        .checked_add_signed(Duration::hours(2))
         .expect("Failed to calculate expiration")
         .timestamp() as usize;
 

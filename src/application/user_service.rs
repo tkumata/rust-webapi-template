@@ -3,13 +3,13 @@ use crate::domain::user::{CreateUser, UpdateUser, User};
 use sqlx::{Pool, Postgres};
 use uuid::Uuid;
 
-pub async fn get_all_users(
-    pool: &Pool<Postgres>
-) -> Result<Vec<User>, sqlx::Error> {
-    sqlx::query_as!(User, "SELECT id, name, email, password_hash FROM users")
-        .fetch_all(pool)
-        .await
-}
+// pub async fn get_all_users(
+//     pool: &Pool<Postgres>
+// ) -> Result<Vec<User>, sqlx::Error> {
+//     sqlx::query_as!(User, "SELECT id, name, email, password_hash FROM users")
+//         .fetch_all(pool)
+//         .await
+// }
 
 pub async fn get_user_by_id(
     pool: &Pool<Postgres>,
