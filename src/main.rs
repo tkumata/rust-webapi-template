@@ -35,15 +35,15 @@ async fn main() {
         // Auth and make one hour token.
         .route("/login", post(auth_handler::login))
         // Get all users.
-        .route("/users", get(user_handler::list_users))
+        // .route("/users", get(user_handler::list_users))
         // Create user.
-        .route("/users", post(user_handler::create_user))
+        .route("/user", post(user_handler::create_user))
         // Get a user.
-        .route("/users/:id", get(user_handler::get_user))
+        .route("/user", get(user_handler::get_user))
         // Update a user.
-        .route("/users/:id", put(user_handler::update_user))
+        .route("/user", put(user_handler::update_user))
         // Delete a user.
-        .route("/users/:id", delete(user_handler::delete_user))
+        .route("/user", delete(user_handler::delete_user))
         .with_state(pool);
 
         // run our app with hyper, listening globally on port 4000

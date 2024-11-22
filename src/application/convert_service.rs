@@ -1,3 +1,5 @@
+use std::net::IpAddr;
+
 pub struct ConvertedRgb {
     pub r: String,
     pub g: String,
@@ -18,4 +20,11 @@ pub fn to_hex(r: i32, g: i32, b: i32) -> ConvertedRgb {
     };
 
     rgb
+}
+
+pub fn to_subnetmask(bit_length: i32) -> IpAddr {
+    let bits: u32 = (!0) << (32 - bit_length);
+    let subnetmask: IpAddr = IpAddr::V4(bits.into());
+
+    subnetmask
 }
