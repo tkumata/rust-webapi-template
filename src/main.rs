@@ -2,7 +2,6 @@ mod application;
 mod auth;
 mod domain;
 mod infrastructure;
-mod models;
 mod presentation;
 
 use axum::{
@@ -11,11 +10,7 @@ use axum::{
 };
 use infrastructure::db::create_db_pool;
 use presentation::auth_handler;
-use presentation::convert_handler;
-use presentation::dice_handler;
 use presentation::healthcheck_handler;
-use presentation::metrics_handler;
-use presentation::sleep_handler;
 use presentation::user_handler;
 
 #[tokio::main(flavor = "multi_thread", worker_threads = 16)]
@@ -25,16 +20,6 @@ async fn main() {
     let app = Router::new()
         // healthcheck
         .route("/healthcheck", get(healthcheck_handler::healthcheck))
-        // Return random number
-        .route("/roll/1d6", get(dice_handler::roll_1d6))
-        // Sleep
-        .route("/sleep/:wait_time", get(sleep_handler::make_sleep))
-        // Get metrics.
-        .route("/metrics", get(metrics_handler::get_metrics))
-        // Convert /27 to 255.255.255.224
-        .route("/convert/v4prefix", post(convert_handler::convert_v4prefix))
-        // Convert 55,155,250 to 379BFA
-        .route("/convert/rgb", post(convert_handler::convert_rgb))
         // Auth and make one hour token.
         .route("/login", post(auth_handler::login))
         // Get all users.
