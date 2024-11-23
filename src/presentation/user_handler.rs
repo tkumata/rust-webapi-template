@@ -1,9 +1,9 @@
-use axum::{extract::State, Json};
 use crate::{
     application::user_service,
-    domain::user::{CreateUser, UpdateUser},
     auth::middleware::AuthenticatedUser,
+    domain::user::{CreateUser, UpdateUser},
 };
+use axum::{extract::State, Json};
 use sqlx::PgPool;
 use uuid::Uuid;
 
@@ -56,7 +56,7 @@ pub async fn update_user(
 // ユーザ情報削除ハンドラ
 pub async fn delete_user(
     State(pool): State<PgPool>,
-    AuthenticatedUser(claims): AuthenticatedUser, // 認証を要求
+    AuthenticatedUser(claims): AuthenticatedUser,
 ) -> Json<u64> {
     // 認証が成功した user id を Uuid 型 id に束縛する。
     let id = Uuid::parse_str(&claims).expect("Invalid UUID.");

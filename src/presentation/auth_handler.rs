@@ -1,9 +1,9 @@
-use axum::{extract::State, Json};
-use crate::domain::user::LoginRequest;
-use crate::auth::auth_service::authenticate_user;
 use crate::application::token_service::create_and_store_token;
-use sqlx::PgPool;
+use crate::auth::auth_service::authenticate_user;
+use crate::domain::user::LoginRequest;
 use axum::http::StatusCode;
+use axum::{extract::State, Json};
+use sqlx::PgPool;
 
 pub async fn login(
     State(pool): State<PgPool>,
@@ -16,9 +16,12 @@ pub async fn login(
 
     // 上記 map_err() のおかげで正常なユーザは処理が続行される。
     // JWT トークンを生成する。
-    let token = create_and_store_token(user.id, &pool)
-        .await
-        .map_err(|_| (StatusCode::INTERNAL_SERVER_ERROR, "Failed to generate token"))?;
+    let token = create_and_store_token(user.id, &pool).await.map_err(|_| {
+        (
+            StatusCode::INTERNAL_SERVER_ERROR,
+            "Failed to generate token",
+        )
+    })?;
 
     Ok(Json(token))
 }

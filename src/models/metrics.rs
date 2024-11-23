@@ -1,5 +1,5 @@
-use sysinfo::{System, Disks};
 use serde::Serialize;
+use sysinfo::{Disks, System};
 
 pub async fn get_kernelname() -> Option<String> {
     System::name()
@@ -11,8 +11,9 @@ pub async fn get_load() -> String {
     [
         load_avg.one.to_string(),
         load_avg.five.to_string(),
-        load_avg.fifteen.to_string()
-    ].join(",")
+        load_avg.fifteen.to_string(),
+    ]
+    .join(",")
 }
 
 pub async fn get_mem() -> u64 {
@@ -38,11 +39,15 @@ pub async fn get_storage() -> Vec<String> {
 
     for disk in disks.list() {
         let diskinfo: DiskInfo = DiskInfo {
-            mount_point: disk.mount_point().to_path_buf().to_string_lossy().into_owned(),
+            mount_point: disk
+                .mount_point()
+                .to_path_buf()
+                .to_string_lossy()
+                .into_owned(),
             spaces: Spaces {
                 available_space: disk.available_space(),
                 total_space: disk.total_space(),
-            }
+            },
         };
         let serialized: String = serde_json::to_string(&diskinfo).unwrap();
         disk_info.push(serialized);

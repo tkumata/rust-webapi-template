@@ -1,19 +1,22 @@
-mod models;
+mod application;
 mod auth;
 mod domain;
 mod infrastructure;
-mod application;
+mod models;
 mod presentation;
 
-use axum::{Router, routing::{get, post, put, delete}};
+use axum::{
+    routing::{delete, get, post, put},
+    Router,
+};
 use infrastructure::db::create_db_pool;
-use presentation::user_handler;
 use presentation::auth_handler;
 use presentation::convert_handler;
-use presentation::metrics_handler;
-use presentation::healthcheck_handler;
 use presentation::dice_handler;
+use presentation::healthcheck_handler;
+use presentation::metrics_handler;
 use presentation::sleep_handler;
+use presentation::user_handler;
 
 #[tokio::main(flavor = "multi_thread", worker_threads = 16)]
 async fn main() {
@@ -46,7 +49,7 @@ async fn main() {
         .route("/user", delete(user_handler::delete_user))
         .with_state(pool);
 
-        // run our app with hyper, listening globally on port 4000
-        let listener = tokio::net::TcpListener::bind("0.0.0.0:4000").await.unwrap();
-        axum::serve(listener, app).await.unwrap();
+    // run our app with hyper, listening globally on port 4000
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:4000").await.unwrap();
+    axum::serve(listener, app).await.unwrap();
 }

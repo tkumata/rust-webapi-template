@@ -20,7 +20,7 @@ pub struct CreateUser {
 #[derive(Deserialize)]
 pub struct UpdateUser {
     pub name: Option<String>,
-    pub email: Option<String>
+    pub email: Option<String>,
 }
 
 #[derive(Deserialize)]

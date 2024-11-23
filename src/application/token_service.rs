@@ -1,15 +1,15 @@
-use jsonwebtoken::{encode, Header, EncodingKey};
-use chrono::{Utc, Duration};
+use chrono::{Duration, Utc};
+use jsonwebtoken::{encode, EncodingKey, Header};
+use serde::{Deserialize, Serialize};
 use sqlx::{Pool, Postgres};
-use serde::{Serialize, Deserialize};
-use uuid::Uuid;
 use std::env;
+use uuid::Uuid;
 
 // トークンに埋め込むクレーム
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Claims {
-    pub sub: String,      // Subject (ユーザー ID)
-    pub exp: usize,       // Expiration time (UNIX timestamp)
+    pub sub: String, // Subject (ユーザー ID)
+    pub exp: usize,  // Expiration time (UNIX timestamp)
 }
 
 /// JWT トークンを生成してデータベースに保存
@@ -36,7 +36,8 @@ pub async fn create_and_store_token(
         &Header::default(),
         &claims,
         &EncodingKey::from_secret(secret_key),
-    ).expect("Failed to encode JWT");
+    )
+    .expect("Failed to encode JWT");
 
     // トークンをデータベースに保存
     let result = sqlx::query!(
@@ -48,10 +49,10 @@ pub async fn create_and_store_token(
     )
     .execute(pool)
     .await;
-    
+
     if let Err(err) = result {
         println!("SQL execution error: {:?}", err);
     }
-    
+
     Ok(token)
 }
