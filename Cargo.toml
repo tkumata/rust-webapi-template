@@ -17,10 +17,12 @@ hyper = { version = "1.0.133", features = ["full"] }
 tower = "0.5.1"
 rand = "0.8.5"
 sysinfo = "0.32.0"
-clippy = "0.0.302"
 uuid = { version = "1.11.0", features = ["serde", "v4"] }
-dotenv = "0.15.0"
+dotenvx = "0.*"
 jsonwebtoken = "9.3.0"
 chrono = "0.4.38"
 headers = "0.4.0"
-bcrypt = "0.15.1"
+bcrypt = "0.16.0"
+
+[build-dependencies]
+clippy = { version = "0.0.302", optional = true }

@@ -1,6 +1,6 @@
+use dotenvx::dotenv;
 use sqlx::{Pool, Postgres};
 use std::env;
-use dotenv::dotenv;
 
 pub async fn create_db_pool() -> Result<Pool<Postgres>, sqlx::Error> {
     dotenv().ok();

@@ -1,6 +1,6 @@
+use crate::domain::user::User;
 use bcrypt::verify;
 use sqlx::PgPool;
-use crate::domain::user::User;
 
 pub async fn authenticate_user(
     pool: &PgPool,
@@ -17,8 +17,8 @@ pub async fn authenticate_user(
     .map_err(|_| "Invalid email or password")?;
 
     // パスワードを検証
-    let is_valid = verify(password, &user.password_hash)
-        .map_err(|_| "Failed to verify password")?;
+    let is_valid =
+        verify(password, &user.password_hash).map_err(|_| "Failed to verify password")?;
 
     if is_valid {
         Ok(user)
