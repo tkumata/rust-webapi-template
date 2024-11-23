@@ -9,7 +9,6 @@
   "editor.rulers": [100],
   "editor.wordWrap": "on",
   "editor.cursorBlinking": "blink",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "markdown.preview.fontFamily": "sans-serif, monospace",
   "rust-analyzer.linkedProjects": ["./Cargo.toml", "./Cargo.toml"],
