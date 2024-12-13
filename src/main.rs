@@ -9,9 +9,9 @@ use axum::{
     Router,
 };
 use infrastructure::db::create_db_pool;
-use presentation::auth_handler;
-use presentation::healthcheck_handler;
-use presentation::user_handler;
+use presentation::handlers::auth_handler;
+use presentation::handlers::healthcheck_handler;
+use presentation::handlers::user_handler;
 
 #[tokio::main(flavor = "multi_thread", worker_threads = 16)]
 async fn main() {
