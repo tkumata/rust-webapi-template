@@ -1,4 +1,4 @@
-use crate::application::token_service::create_and_store_token;
+use crate::application::usecase::token_service::create_and_store_token;
 use crate::auth::auth_service::authenticate_user;
 use crate::domain::user::LoginRequest;
 use axum::http::StatusCode;

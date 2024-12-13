@@ -1,5 +1,5 @@
 use crate::{
-    application::user_service,
+    application::usecase::user_service,
     auth::middleware::AuthenticatedUser,
     domain::user::{CreateUser, UpdateUser},
 };
