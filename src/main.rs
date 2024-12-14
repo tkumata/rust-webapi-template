@@ -9,7 +9,6 @@ use tokio::net::TcpListener;
 use tracing::info;
 
 mod application;
-mod auth;
 mod domain;
 mod infrastructure;
 mod presentation;

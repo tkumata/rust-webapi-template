@@ -1,4 +1,4 @@
-use crate::auth::jwt::validate_token;
+use crate::application::auth::jwt::validate_token;
 use axum::{
     async_trait,
     extract::FromRequestParts,
