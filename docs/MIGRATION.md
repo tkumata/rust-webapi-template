@@ -1,6 +1,6 @@
 # DB migration
 
-DB migration の手順について。
+DB migration について。
 
 ## Deisel の使い方
 
@@ -11,10 +11,10 @@ DB migration の手順について。
 以下を実行して migration ファイルの雛形を作成。
 
 ```shell
-diesel migration generate create_users
+diesel migration generate sql_exec_name
 ```
 
-以下の 2 つのファイルが `migrations/<timestamp>_create_users` ディレクトリ内に生成される。
+以下の 2 つのファイルが `migrations/<timestamp>_<sql_exec_name>` ディレクトリ内に生成される。
 
 - up.sql (migration 適用に関する SQL を記述)
 - down.sql (migration 取り消しに関する SQL を記述)
