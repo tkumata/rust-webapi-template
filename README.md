@@ -1,4 +1,4 @@
-# 🚀 Rust で REST API をつくる
+# 🦀 Rust で REST API をつくる
 
 本プロジェクトの目標は、Rust で REST API の雛形を作ることです。私の知識の可能な限りクリーンアーキテクチャを意識しています。
 
@@ -11,7 +11,7 @@
 
 - [ ] OAuth2
 
-## 🛠️ 開発環境
+## 🛠️ 開発環境構築
 
 VS Code Dev Container 拡張をインストールし、以下のファイルを作成することで、ローカルマシンに OCI コンテナを立て Rust 開発環境を構築します。
 
@@ -21,9 +21,25 @@ VS Code Dev Container 拡張をインストールし、以下のファイルを�
 
 初回は時間がかかりますが二回目以降は Attach するだけなので時間はかかりません。
 
-## 💻 Usage
+## 🔨 ビルド
 
-### Create user
+VS Code 編集画面 `fn main()` の直上の `▶ Run` をクリック。もしくは以下のコマンドを実行。
+
+デバッグ用 ⚙️
+
+```shell
+cargo build
+```
+
+本番用 📦
+
+```shell
+cargo build --release
+```
+
+## 💻 使い方
+
+### ユーザ作成
 
 ```shell
 curl --location --request POST 'http://localhost:4000/user' \
@@ -35,7 +51,7 @@ curl --location --request POST 'http://localhost:4000/user' \
 }'
 ```
 
-### Login
+### ログイン
 
 ```shell
 curl --location --request POST 'http://localhost:4000/login' \
@@ -46,14 +62,14 @@ curl --location --request POST 'http://localhost:4000/login' \
 }'
 ```
 
-### Get user
+### ユーザ情報取得
 
 ```shell
 curl --location 'http://localhost:4000/user' \
 --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzZTJkMTQyZC01OGZlLTRiOWEtYjZkYi0wMTlmODI0YjRkNTkiLCJleHAiOjE3MzIwMjE5NTl9.l27mHiTGb0Ghx0s1vlQuccb99llcdo-MCSuNMSgRPds'
 ```
 
-### Edit user
+### ユーザ情報編集
 
 ```shell
 curl --location --request PUT 'http://localhost:4000/user' \
@@ -65,6 +81,6 @@ curl --location --request PUT 'http://localhost:4000/user' \
 }'
 ```
 
-## 📜 License
+## ⚖️ ライセンス
 
 MIT License.
