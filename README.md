@@ -4,8 +4,8 @@
 
 ## ✅ 実装済み
 
-- [x] CRUD
-- [x] JWT Token
+- [x] CRUD with Axum
+- [x] JWT Token Authentication 🔒
 
 ## 🔜 実装予定
 
@@ -26,11 +26,11 @@ VS Code Dev Container 拡張をインストールし、以下のファイルを�
 ### Create user
 
 ```shell
-curl --location 'http://localhost:4000/users' \
+curl --location --request POST 'http://localhost:4000/user' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "name": "Your Name",
-    "email": "yourmail@example.com",
+    "email": "your_email@example.com",
     "password":"password"
 }'
 ```
@@ -38,10 +38,10 @@ curl --location 'http://localhost:4000/users' \
 ### Login
 
 ```shell
-curl --location 'http://localhost:4000/login' \
+curl --location --request POST 'http://localhost:4000/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "email": "yourmail@example.com",
+    "email": "your_email@example.com",
     "password":"password"
 }'
 ```
@@ -49,8 +49,20 @@ curl --location 'http://localhost:4000/login' \
 ### Get user
 
 ```shell
-curl --location 'http://localhost:4000/users/3e2d142d-58fe-4b9a-b6db-019f824b4d59' \
+curl --location 'http://localhost:4000/user' \
 --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzZTJkMTQyZC01OGZlLTRiOWEtYjZkYi0wMTlmODI0YjRkNTkiLCJleHAiOjE3MzIwMjE5NTl9.l27mHiTGb0Ghx0s1vlQuccb99llcdo-MCSuNMSgRPds'
+```
+
+### Edit user
+
+```shell
+curl --location --request PUT 'http://localhost:4000/user' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzZTJkMTQyZC01OGZlLTRiOWEtYjZkYi0wMTlmODI0YjRkNTkiLCJleHAiOjE3MzIwMjE5NTl9.l27mHiTGb0Ghx0s1vlQuccb99llcdo-MCSuNMSgRPds'
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Your Name",
+    "email": "new_your_email@example.com"
+}'
 ```
 
 ## 📜 License
