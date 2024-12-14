@@ -2,11 +2,11 @@
 
 DB migration について。
 
-## Deisel の使い方
+## 💻 Deisel の使い方
 
 今後 DB に手を入れる場合の操作方法について。初期構築は後述。
 
-### migration ファイルの作成
+### ✨ migration ファイルの作成
 
 以下を実行して migration ファイルの雛形を作成。
 
@@ -19,11 +19,11 @@ diesel migration generate sql_exec_name
 - up.sql (migration 適用に関する SQL を記述)
 - down.sql (migration 取り消しに関する SQL を記述)
 
-### migration ファイルの編集
+### 📝 migration ファイルの編集
 
 上記ファイルを編集する。
 
-### migration 実行
+### ⚙️ migration 実行
 
 上記 migration ファイルを DB に適用する。
 
@@ -31,7 +31,7 @@ diesel migration generate sql_exec_name
 diesel migration run
 ```
 
-### migration 確認
+### 👀 migration 確認
 
 ```shell
 diesel migration list
@@ -45,7 +45,7 @@ Migrations:
   [X] 2024-11-23-043245_create_users
 ```
 
-## Diesel 初期構築
+## 🛠 Diesel 初期構築
 
 コンテナを作り直したときなど以下を実行。
 

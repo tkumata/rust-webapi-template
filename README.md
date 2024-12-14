@@ -21,6 +21,22 @@ VS Code Dev Container 拡張をインストールし、以下のファイルを�
 
 初回は時間がかかりますが二回目以降は Attach するだけなので時間はかかりません。
 
+## 🔨 ビルド
+
+VS Code 編集画面 `fn main()` の直上の `▶ Run` をクリック。もしくは以下のコマンドを実行。
+
+デバッグ用
+
+```shell
+cargo build
+```
+
+本番用
+
+```shell
+cargo build --release
+```
+
 ## 💻 Usage
 
 ### Create user
