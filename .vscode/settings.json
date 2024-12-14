@@ -8,8 +8,9 @@
   "editor.rulers": [120],
   "editor.wordWrap": "on",
   "editor.cursorBlinking": "blink",
-  "editor.formatOnSave": true,
   "markdown.preview.fontFamily": "sans-serif, monospace",
   "rust-analyzer.linkedProjects": ["./Cargo.toml", "./Cargo.toml"],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "rust-lang.rust-analyzer",
   "rust-analyzer.check.command": "clippy"
 }
