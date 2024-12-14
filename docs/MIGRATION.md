@@ -47,14 +47,14 @@ Migrations:
 
 ## 🛠 Diesel 初期構築
 
+本当に初めてなら以下を最初に実行。disel.toml と migrations ディレクトリが存在すれば実行しなくて良い。
+
+```shell
+diesel setup
+```
+
 コンテナを作り直したときなど以下を実行。
 
 ```shell
 cargo install diesel_cli --no-default-features --features "postgres"
-```
-
-本当に初めてなら以下も実行。disel.toml と migrations ディレクトリが存在すれば実行しなくて良い。
-
-```shell
-diesel setup
 ```

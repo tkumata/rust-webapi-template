@@ -11,7 +11,7 @@
 
 - [ ] OAuth2
 
-## 🛠️ 開発環境
+## 🛠️ 開発環境構築
 
 VS Code Dev Container 拡張をインストールし、以下のファイルを作成することで、ローカルマシンに OCI コンテナを立て Rust 開発環境を構築します。
 
@@ -37,9 +37,9 @@ cargo build
 cargo build --release
 ```
 
-## 💻 Usage
+## 💻 使い方
 
-### Create user
+### ユーザ作成
 
 ```shell
 curl --location --request POST 'http://localhost:4000/user' \
@@ -51,7 +51,7 @@ curl --location --request POST 'http://localhost:4000/user' \
 }'
 ```
 
-### Login
+### ログイン
 
 ```shell
 curl --location --request POST 'http://localhost:4000/login' \
@@ -62,14 +62,14 @@ curl --location --request POST 'http://localhost:4000/login' \
 }'
 ```
 
-### Get user
+### ユーザ情報取得
 
 ```shell
 curl --location 'http://localhost:4000/user' \
 --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzZTJkMTQyZC01OGZlLTRiOWEtYjZkYi0wMTlmODI0YjRkNTkiLCJleHAiOjE3MzIwMjE5NTl9.l27mHiTGb0Ghx0s1vlQuccb99llcdo-MCSuNMSgRPds'
 ```
 
-### Edit user
+### ユーザ情報編集
 
 ```shell
 curl --location --request PUT 'http://localhost:4000/user' \
@@ -81,6 +81,6 @@ curl --location --request PUT 'http://localhost:4000/user' \
 }'
 ```
 
-## 📜 License
+## 📜 ライセンス
 
 MIT License.
