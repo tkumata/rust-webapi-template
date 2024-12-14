@@ -17,26 +17,33 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout repository
+      - name: 📋 Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Rust
+      - name: ⚙ Setup Rust
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           target: ${{ matrix.target }}
           override: true
 
-      - name: Build binary
+      - name: 🍺 Install clang (if on macOS)
+        if: ${{ matrix.os == 'macos-latest' }}
+        run: |
+          if ! command -v clang &> /dev/null; then
+            brew install clang
+          fi
+
+      - name: 🔨 Build binary
         run: |
           cargo build --release --target ${{ matrix.target }}
           mkdir -p dist
-          cp target/${{ matrix.target }}/release/restapir dist/restapir-${{ matrix.target }}
+          cp target/${{ matrix.target }}/release/rust-webapi-template dist/rust-webapi-template-${{ matrix.target }}
 
-      - name: Upload to Release
+      - name: 🔝 Upload to Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/restapir-${{ matrix.target }}
+            dist/rust-webapi-template-${{ matrix.target }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
