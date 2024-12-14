@@ -1,5 +1,5 @@
+use crate::application::auth::auth_service::authenticate_user;
 use crate::application::usecase::token_service::create_and_store_token;
-use crate::auth::auth_service::authenticate_user;
 use crate::domain::user::LoginRequest;
 use axum::http::StatusCode;
 use axum::{extract::State, Json};

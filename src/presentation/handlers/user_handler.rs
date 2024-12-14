@@ -1,6 +1,6 @@
 use crate::{
+    application::auth::middleware::AuthenticatedUser,
     application::usecase::user_service,
-    auth::middleware::AuthenticatedUser,
     domain::user::{CreateUser, UpdateUser},
 };
 use axum::{extract::State, Json};
