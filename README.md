@@ -1,4 +1,4 @@
-# 🚀 Rust で REST API をつくる
+# 🦀 Rust で REST API をつくる
 
 本プロジェクトの目標は、Rust で REST API の雛形を作ることです。私の知識の可能な限りクリーンアーキテクチャを意識しています。
 
@@ -25,13 +25,13 @@ VS Code Dev Container 拡張をインストールし、以下のファイルを�
 
 VS Code 編集画面 `fn main()` の直上の `▶ Run` をクリック。もしくは以下のコマンドを実行。
 
-デバッグ用
+デバッグ用 ⚙️
 
 ```shell
 cargo build
 ```
 
-本番用
+本番用 📦
 
 ```shell
 cargo build --release
@@ -81,6 +81,6 @@ curl --location --request PUT 'http://localhost:4000/user' \
 }'
 ```
 
-## 📜 ライセンス
+## ⚖️ ライセンス
 
 MIT License.
